@@ -21,6 +21,9 @@ calcEfNSoil <- function(method = "IPCC_reg") {
                        dim = c(1, 3.2))
     efNSoil <- emis / surplus
     weight  <- surplus
+    #extend beyond last year
+    efNSoil<- toolHoldConstantBeyondEnd(efNSoil)
+    weight <- toolHoldConstantBeyondEnd(weight)
   } else if (method == "IPCC"){
     efNSoil <- setYears(calcOutput("IPCCefNSoil", aggregate = "GLO")[, "y2010", ],
                         NULL)
@@ -30,9 +33,14 @@ calcEfNSoil <- function(method = "IPCC_reg") {
                           supplementary = TRUE)
     efNSoil <- tmp$x
     weight  <- tmp$weight
+  #extend beyond last year
+  efNSoil<- toolHoldConstantBeyondEnd(efNSoil)
+  weight <- toolHoldConstantBeyondEnd(weight)
+
   } else {
     stop("method unknown")
   }
+
   return(list(x = efNSoil,
               weight = weight,
               unit = "Share",
