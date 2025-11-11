@@ -24,10 +24,10 @@ calcCroplandTreecover <- function(maginput = TRUE, cells = "magpiecell", country
   treecover <- readSource("Copernicus", subtype = "CroplandTreecover", convert = "onlycorrect")
 
   if (maginput) {
-    luh <- calcOutput("LUH2v2",
-      landuse_types = "magpie", aggregate = FALSE,
-      cellular = TRUE, cells = "lpjcell", irrigation = FALSE,
-      selectyears = "y2015"
+    luh <- calcOutput("LUH3",
+      landuseTypes = "magpie", aggregate = FALSE,
+      cellular = TRUE, irrigation = FALSE,
+      yrs = 2015
     )
     getYears(luh) <- NULL
     getCells(luh) <- getCells(treecover)

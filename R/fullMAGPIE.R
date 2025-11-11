@@ -392,6 +392,14 @@ fullMAGPIE <- function(rev = numeric_version("0.1"), dev = "") {
   calcOutput("HistBioplasticProd", aggregate = FALSE, years = c(2010, 2015, 2020), round = 3,
              outputStatistics = stats, file = "f62_hist_dem_bioplastic.csv")
 
+  # 63 biochar
+  calcOutput("BiocharProd", datasource = "REMIND", years = shortYears, round = 3, rev = rev,
+             outputStatistics = stats, biocharsystems = "disagg", unit = "EJ/yr", file = "f63_biochar_prod.cs3")
+  calcOutput("BiocharAttributes", processCond = "default", round = 2, aggregate = FALSE,
+             outputStatistics = stats, file = "f63_biochar_attributes.cs3")
+  calcOutput("BiocharEfficiency", processCond = "default", outputType = "default", round = 2,
+             outputStatistics = stats, aggregate = FALSE, file = "f63_biochar_efficiency.cs3")
+
   # 70 livestock
   calcOutput("FeedBaskets",           years = magYears,  round = 4,
              outputStatistics = stats, file = "f70_feed_baskets.cs3")
@@ -403,7 +411,7 @@ fullMAGPIE <- function(rev = numeric_version("0.1"), dev = "") {
              outputStatistics = stats, file = "f70_slaughter_feed_share.cs4")
   calcOutput("PYieldSlope",                              round = 2,
              outputStatistics = stats, file = "f70_pyld_slope_reg.cs4")
-  calcOutput("Production", round = 4, products = "kli", aggregate = TRUE, years = seq(1995, 2010, 5),
+  calcOutput("Production", round = 4, products = "kli", aggregate = TRUE, years = seq(1995, 2015, 5),
              outputStatistics = stats, file = "f70_hist_prod_livst.cs3")
   calcOutput("FactorCostsLivst", round = 4, aggregate = TRUE, years = seq(1995, 2015, 5),
              outputStatistics = stats, file = "f70_hist_factor_costs_livst.cs3")

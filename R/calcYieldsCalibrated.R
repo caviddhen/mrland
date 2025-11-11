@@ -109,7 +109,7 @@ calcYieldsCalibrated <- function(source = c(lpjml = "ggcmi_phase3_nchecks_9ca735
   if (areaSource == "FAO") {
 
     cropareaMAGgrid <- calcOutput("Croparea", sectoral = "kcr", physical = TRUE,
-                                  cellular = TRUE,  cells = cells,
+                                  cellular = TRUE,
                                   irrigation = TRUE, aggregate = FALSE)[, refYear, crops]
 
     if (cells == "lpjcell") {

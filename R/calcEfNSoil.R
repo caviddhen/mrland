@@ -7,8 +7,8 @@
 #'         weight on country level, unit and description.
 #' @author Benjamin Leon Bodirsky
 #' @examples
-#' 
-#' \dontrun{ 
+#'
+#' \dontrun{
 #' calcOutput("EmisNitrogenPast")
 #' }
 
@@ -22,20 +22,20 @@ calcEfNSoil <- function(method = "IPCC_reg") {
     efNSoil <- emis / surplus
     weight  <- surplus
     #extend beyond last year
-    efNSoil<- toolHoldConstantBeyondEnd(efNSoil)
+    efNSoil <- toolHoldConstantBeyondEnd(efNSoil)
     weight <- toolHoldConstantBeyondEnd(weight)
-  } else if (method == "IPCC"){
+  } else if (method == "IPCC") {
     efNSoil <- setYears(calcOutput("IPCCefNSoil", aggregate = "GLO")[, "y2010", ],
                         NULL)
     weight  <- NULL
-  } else if (method == "IPCC_reg"){
+  } else if (method == "IPCC_reg") {
     tmp     <- calcOutput("IPCCefNSoil", aggregate = FALSE,
                           supplementary = TRUE)
     efNSoil <- tmp$x
     weight  <- tmp$weight
-  #extend beyond last year
-  efNSoil<- toolHoldConstantBeyondEnd(efNSoil)
-  weight <- toolHoldConstantBeyondEnd(weight)
+    #extend beyond last year
+    efNSoil <- toolHoldConstantBeyondEnd(efNSoil)
+    weight <- toolHoldConstantBeyondEnd(weight)
 
   } else {
     stop("method unknown")
@@ -45,6 +45,7 @@ calcEfNSoil <- function(method = "IPCC_reg") {
               weight = weight,
               unit = "Share",
               description = paste0("Emission factors from cropland soils. ",
-              "If IPCC, using the ipcc emission factors as share of applied N inputs. ",
-              "If Nloss, as share of cropland budget surplus.")))
+                                   "If IPCC, using the ipcc emission factors as
+                                   share of applied N inputs. ",
+                                   "If Nloss, as share of cropland budget surplus.")))
 }

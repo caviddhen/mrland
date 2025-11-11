@@ -97,7 +97,7 @@ calcProcessing_conversion_factors <- function() { # nolint: object_name_linter.
   convmatrix[, , "extracting"][, , "ethanol"][, , "Xbetr"] <- 0.36
   convmatrix[, , "extracting"][, , "ethanol"][, , "Xbegr"] <- 0.36
 
-  # test that the conversion factors are congruent with the 
+  # test that the conversion factors are congruent with the
   # production_estimated in FAOmassbalance_pre
   kprocessingM <- setdiff(kprocessing, c("breeding", "ginning"))
   mbReduced <- dimSums(massbalance[, , "dm"], dim = 3.3)

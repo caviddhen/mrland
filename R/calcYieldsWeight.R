@@ -53,14 +53,14 @@ calcYieldsWeight <- function(cells = "lpjcell", weighting = "totalCrop", margina
   if (weighting == "totalCrop") {
 
     cropAreaWeight <- dimSums(calcOutput("Croparea", sectoral = "kcr", physical = TRUE, irrigation = FALSE,
-                                         cellular = TRUE, cells = cells, aggregate = FALSE,
+                                         cellular = TRUE, aggregate = FALSE,
                                          years = "y1995", round = 6),
                               dim = 3) + 10e-10
 
   } else if (weighting %in% c("totalLUspecific", "cropSpecific", "crop+irrigSpecific")) {
 
     crop <- calcOutput("Croparea", sectoral = "kcr", physical = TRUE, irrigation = TRUE,
-                       cellular = TRUE, cells = cells, aggregate = FALSE, years = "y1995", round = 6)
+                       cellular = TRUE, aggregate = FALSE, years = "y1995", round = 6)
 
     past <- calcOutput("LanduseInitialisation", aggregate = FALSE, cellular = TRUE, nclasses = "seven",
                        input_magpie = TRUE, cells = cells, years = "y1995", round = 6)[, , "past"]
